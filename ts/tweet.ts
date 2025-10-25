@@ -9,13 +9,25 @@ class Tweet {
 
 	//returns either 'live_event', 'achievement', 'completed_event', or 'miscellaneous'
     get source():string {
-        //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous.
-        return "unknown";
+        //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous. (COMPLETED)
+        const lowercase_tweet_text = this.text.toLowerCase();
+        if (lowercase_tweet_text.startsWith("completed") || lowercase_tweet_text.includes("just posted")) {
+            return "completed_event";
+        }
+        else if (lowercase_tweet_text.includes("live") || lowercase_tweet_text.includes("right now")) {
+            return "live_event";
+        }
+        else if (lowercase_tweet_text.includes("achieved") || lowercase_tweet_text.includes("goal")) {
+            return "achievement";
+        }
+        return "miscellaneous";
     }
 
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
-        //TODO: identify whether the tweet is written
+        if (this.text.includes("-")) {
+            return true;
+        }
         return false;
     }
 
