@@ -77,6 +77,7 @@ function parseTweets(runkeeper_tweets) {
 	document.getElementById("shortestActivityType").innerText = sorted_avg_dist[sorted_avg_dist.length - 1][0];
 	document.getElementById("weekdayOrWeekendLonger").innerText = (weekday_dist / weekday_count) > (weekend_dist / weekend_count) ? "weekdays" : "weekends";
 
+	// Distance Visual
 	distance_vis_spec = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 	  	"description": "A graph of the distances by day of week for all of the three most tweeted-about activites.",
@@ -91,6 +92,7 @@ function parseTweets(runkeeper_tweets) {
   		"height": 300
 	};
 
+	// Aggregated Distance Visual
 	distance_vis_agg = {
 		"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 	  	"description": "A graph of the mean distances by day of week for all of the three most tweeted-about activites.",
@@ -112,10 +114,6 @@ function parseTweets(runkeeper_tweets) {
 		this.textContent = show_agg ? "Show All Activities" : "Show Means";
 		vegaEmbed('#distanceVis', show_agg ? distance_vis_agg : distance_vis_spec, { actions: false });
 	});
-
-	/*document.getElementById("longestActivityType").innerText = sorted_dist_avgs[0][0];
-	document.getElementById("shortestActivityType").innerText = sorted_dist_avgs[sorted_dist_avgs.length - 1][0];
-	document.getElementById("weekdayOrWeekendLonger").innerText = (weekday_total / weekday_count) > (weekend_total / weekend_count) ? "weekdays" : "weekends";*/
 }
 
 //Wait for the DOM to load
